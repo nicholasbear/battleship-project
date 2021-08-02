@@ -1,3 +1,4 @@
+#tkinter 참고용
 import random as rd
 from tkinter import*
 from tkinter import font
