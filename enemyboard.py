@@ -4,15 +4,11 @@ import random as rd
 class Enemyboard:
     enemy_board = [[0 for col in range(10)] for row in range(10)]
 
-    a=0
-    b=0
-    c=0
-
-    def printboard(self):
+    def printboard(self): #랜덤으로 잘 놓여졌는지 확인하는 용도
         for i in range(10):
             print(self.enemy_board[i])
 
-    def clear(self):
+    def clear(self): #초기화 Hoxy몰라서 만들어둠
         self.enemy_board = [[0 for col in range(10)] for row in range(10)]
 
     def get_largeship(self):
