@@ -114,4 +114,15 @@ def aimove(myboard,aiboard,boat2,boat3,boat4):
             aiboard[xpos][ypos]=myboard[xpos][ypos]
     
     elif findboat==2:                           #2번 보트 찾았을때
-        xpos=
+        xpos=findpos(aiboard,2,1)/10
+        ypos=findpos(aiboard,2,1)*10
+        aiboard[xpos][ypos]=myboard[xpos][ypos]
+    
+    elif findboat==3:
+        xpos=findpos(aiboard,2,boat3)/10
+        ypos=findpos(aiboard,2,boat3)*10
+        aiboard[xpos][ypos]=myboard[xpos][ypos]
+    else:
+        xpos=findpos(aiboard,2,boat4)/10
+        ypos=findpos(aiboard,2,boat4)*10
+        aiboard[xpos][ypos]=myboard[xpos][ypos]
