@@ -2,9 +2,7 @@ ship1='oo'
 ship2='ooo'
 ship3='oooo'
 ship_list={'ship1','ship2','ship3'}
-
-
-
+ 
 first_ship=input('choose a ship ')
 line_one=input('put your first ship\'s line coordinate>')
 row_one=input('put your first ship\'s row coordinate>')
