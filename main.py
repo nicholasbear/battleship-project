@@ -20,7 +20,7 @@ eb.place(x=700, y=10)
 
 for i in range(10):
     for j in range(10):
-        test = Label(window, text = enemyboard.enemy_board[i][j], width = 4, height = 2, relief="solid", bg = "lavender")
+        test = Label(window, text = enemyboard.Enemyboard.enemy_board[i][j], width = 4, height = 2, relief="solid", bg = "lavender")
         test.grid(row = i, column=j)
 
 
