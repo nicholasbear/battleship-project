@@ -2,7 +2,7 @@
 import random
 
 def initboard():                                                           #따로 보드하나 만듬
-    aiboard= [[0 for col in range(10)] for row in range(10)]
+    newaiboard= [[0 for col in range(10)] for row in range(10)]
 
 def initnumboat():                                                         #격추시킨 수 초기화
     boat2=0
@@ -11,7 +11,7 @@ def initnumboat():                                                         #격�
 
 def findboat(board,boat2,boat3,boat4):                                     #일단 보트상황파악
     for i in board:
-        for j in i:
+        for j in range(10):
             if board[i][j]==2:
                 boat2+=1
             elif board[i][j]==3:
