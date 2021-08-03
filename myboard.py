@@ -1,3 +1,8 @@
+<<<<<<< HEAD
+print("아니 시발 왜안되냐고")
+print("씹창")
+print("이 씨발 Tl ")
+=======
 ship1='oo'
 ship2='ooo'
 ship3='oooo'
@@ -20,4 +25,9 @@ print(ship_list)
 third_ship=input('choose a ship')
 
 line_three=input('put your third ship\'s line coordinates >')
+<<<<<<< HEAD
 row_three=input('put your third ship\'s line coordinate>')
+=======
+row_three=input('put your third ship\'s line coordinate>')
+>>>>>>> a7879a8eaf2af7f4811201681db69fcd7be1e9a6
+>>>>>>> ab4a306b040176966e344979457c782a441a6f7e

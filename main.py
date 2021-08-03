@@ -1,3 +1,8 @@
+<<<<<<< HEAD
+a=1
+print("김우진 ㅎㅇ")
+print("")
+=======
 import ai
 import enemyboard
 
@@ -74,3 +79,4 @@ for i in range(10):
 
 
 window.mainloop()
+>>>>>>> a3ac3ffd63d377bd5b396b019c7c82a29c50fe89
