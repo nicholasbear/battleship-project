@@ -1,0 +1,77 @@
+import ai
+import enemyboard
+import random
+from tkinter import*
+
+window=Tk()
+window.title("Battleship by 머저리")
+window.geometry("1000x640+100+100")
+window.resizable(False, False)
+'''
+mb=Label(window, text="myboard", bg="yellow", fg="black")
+mb.place(x=200, y=10)
+eb=Label(window, text="enemyboard", bg="blue", fg="white")
+eb.place(x=700, y=10)
+'''
+eboard=enemyboard.Enemyboard()       #enemyboard 설정함
+eboard.clear()
+eboard.get_ship(4)
+eboard.get_ship(3)
+eboard.get_ship(2)
+
+mboard= [[0 for col in range(10)] for row in range(10)]                         #myboard 설정함
+
+eshowboard= [[0 for col in range(10)] for row in range(10)]                     #display되는 상대 보드
+mshowboard= [[0 for col in range(10)] for row in range(10)]                     #display되는 내 보드
+
+
+
+#display 되는 부분 //////////////////////////////////////////////////////////////////////////////////////////
+me = Label(window,text='Me',width = 4, height = 2, fg="black")                        #위에 타이틀
+me.place(x=220,y=0,width=40,height=40)
+com = Label(window,text='Com',width = 4, height = 2, fg="black")
+com.place(x=740,y=0,width=40,height=40)
+##########################################
+for i in range(10):                                                                     # 보드 표시부분
+    for j in range(10):
+        if mshowboard[i][j]==0:
+            test = Label(window,width = 4, height = 2, relief="solid", bg = "lavender")
+            test.place(x=40*i+40,y=40*j+40,width=40,height=40)
+        elif mshowboard[i][j]==1:
+            test = Label(window,width = 4, height = 2, relief="solid", bg = "black")
+            test.place(x=40*i+40,y=40*j+40,width=40,height=40)
+        elif mshowboard[i][j]==2:
+            test = Label(window,text='2',width = 4, height = 2, relief="solid", bg = "yellow")
+            test.place(x=40*i+40,y=40*j+40,width=40,height=40)
+        elif mshowboard[i][j]==3:
+            test = Label(window,text='3',width = 4, height = 2, relief="solid", bg = "red")
+            test.place(x=40*i+40,y=40*j+40,width=40,height=40)
+        elif mshowboard[i][j]==4:
+            test = Label(window,text='4',width = 4, height = 2, relief="solid", bg = "blue")
+            test.place(x=40*i+40,y=40*j+40,width=40,height=40)
+
+for i in range(10):                                                         
+    for j in range(10):
+        if eshowboard[i][j]==0:
+            test = Label(window,width = 4, height = 2, relief="solid", bg = "lavender")
+            test.place(x=40*(i+14),y=40*j+40,width=40,height=40)
+        elif eshowboard[i][j]==1:
+            test = Label(window,width = 4, height = 2, relief="solid", bg = "black")
+            test.place(x=40*(i+14),y=40*j+40,width=40,height=40)
+        elif eshowboard[i][j]==2:
+            test = Label(window,text='2',width = 4, height = 2, relief="solid", bg = "yellow")
+            test.place(x=40*(i+14),y=40*j+40,width=40,height=40)
+        elif eshowboard[i][j]==3:
+            test = Label(window,text='3',width = 4, height = 2, relief="solid", bg = "red")
+            test.place(x=40*(i+14),y=40*j+40,width=40,height=40)
+        elif eshowboard[i][j]==4:
+            test = Label(window,text='4',width = 4, height = 2, relief="solid", bg = "blue")
+            test.place(x=40*(i+14),y=40*j+40,width=40,height=40)
+###########################################################
+#격추됬는지 표시부분
+temp = Label(window,test='2번배',width = 4, height = 2, relief="solid", bg = "lavender")
+       temp.place(x=40*(i+14),y=40*j+40,width=40,height=40)
+
+
+
+window.mainloop()
