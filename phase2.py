@@ -6,7 +6,7 @@ from tkinter import *
 
 window=tkinter.Tk()
 window.title("Battleship by 머저리")
-window.geometry("1200x640+100+100")
+window.geometry("1220x640+100+100")
 window.resizable(False, False)
 '''
 mb=Label(window, text="myboard", bg="yellow", fg="black")
@@ -28,7 +28,7 @@ mshowboard= [[0 for col in range(10)] for row in range(10)]                     
 
 
 #display 되는 부분 //////////////////////////////////////////////////////////////////////////////////////////
-me = Label(window,text='Me',width = 4, height = 2, fg="black")                        #위에 타이틀
+me = Label(window,text='Player',width = 4, height = 2, fg="black")                        #위에 타이틀
 me.place(x=220,y=0,width=40,height=40)
 log = Label(window,text='log',width = 4, height = 2, fg="black")                        #위에 타이틀
 log.place(x=580,y=0,width=40,height=40)
@@ -71,30 +71,30 @@ for i in range(10):
             test = Label(window,text='4',width = 4, height = 2, relief="solid", bg = "blue")
             test.place(x=40*(i+19),y=40*j+40,width=40,height=40)
 ###########################################################
-#격추됬는지 표시부분
+#격추됐는지 표시부분
 temp = Label(window,text='2번배',width = 4, height = 2)
 temp.place(x=40,y=480)
-shotboat2 = Label(window,text='?',width = 4, height = 2)
+shotboat2 = Label(window,text='',width = 4, height = 2)
 shotboat2.place(x=40,y=520)
 temp = Label(window,text='3번배',width = 4, height = 2)
 temp.place(x=200,y=480)
-shotboat3 = Label(window,text='?',width = 4, height = 2)
+shotboat3 = Label(window,text='',width = 4, height = 2)
 shotboat3.place(x=200,y=520)
 temp = Label(window,text='4번배',width = 4, height = 2)
 temp.place(x=360,y=480)
-shotboat4 = Label(window,text='?',width = 4, height = 2)
+shotboat4 = Label(window,text='',width = 4, height = 2)
 shotboat4.place(x=360,y=520)
 temp = Label(window,text='2번배',width = 4, height = 2)
 temp.place(x=800,y=480)
-shotboat2 = Label(window,text='?',width = 4, height = 2)
+shotboat2 = Label(window,text='',width = 4, height = 2)
 shotboat2.place(x=800,y=520)
 temp = Label(window,text='3번배',width = 4, height = 2)
 temp.place(x=960,y=480)
-shotboat3 = Label(window,text='?',width = 4, height = 2)
+shotboat3 = Label(window,text='',width = 4, height = 2)
 shotboat3.place(x=960,y=520)
 temp = Label(window,text='4번배',width = 4, height = 2)
 temp.place(x=1120,y=480)
-shotboat4 = Label(window,text='?',width = 4, height = 2)
+shotboat4 = Label(window,text='',width = 4, height = 2)
 shotboat4.place(x=1120,y=520)
 
 '''
