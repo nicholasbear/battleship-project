@@ -36,6 +36,7 @@ def targetHit(): #배를 맞췄을때
                root = Tk()
                root.withdraw()
                msgbox.showinfo("격추", "3번배를 성공적으로 격추시켰습니다!")
+               
 def targetMiss(): #배를 못맞췄을때
     root = Tk()
     root.withdraw()
