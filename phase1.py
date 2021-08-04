@@ -6,7 +6,7 @@ myboard = [[[]for i in range(10)]for i in range(10)]
 
 window=Tk()
 window.title("phase1")
-window.geometry('500x310')
+window.geometry('500x330')
 window.config(bg = "ghost white")
 
 font1=font.Font(size=15)
@@ -33,6 +33,9 @@ label3.place(x = 300, y = 80)
 entry3 = Entry(window, width = 5)
 entry3.place(x = 370, y = 80)
 
+label4 = Label(window, text = "경고 메시지 뜰 칸",bg = "ghost white")
+label4.place(x = 25, y = 290)
+
 button1 = Button(window, text = "2칸 배", bg = "alice blue")
 button1.place(x = 310, y = 120)
 
@@ -48,4 +51,4 @@ button4.place(x = 310, y = 240)
 button5 = Button(window, text = "완료")
 button5.place(x = 430, y = 240)
 
-window.mainloop()  
+window.mainloop()
