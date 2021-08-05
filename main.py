@@ -8,6 +8,7 @@ import newmyboard
 import tkinter.messagebox as msgbox
 import tkinter
 from tkinter import *
+import newmymove
 
 ##### 첫번쨰 페이지
 
@@ -60,9 +61,7 @@ while(ai.findboat!=0):
         msgbox.showinfo("승리했습니다")
         break
 
-    eshowboard=                                 #내가 둔수
-
-
-    mshowboard.initboat()                       #적이 둔수
+    newmymove.mymoveinput(window,eshowboard,eboard)                                    #내가 둔수
+    mshowboard.initboat()                                                              #적이 둔수
     mshowboard.findboat()
     mshowboard.aimove(mboard)                     

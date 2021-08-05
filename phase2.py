@@ -78,46 +78,16 @@ def ifeboatcrashed(eshowboard,window):
         shotboat4 = Label(window,text='격추됨',width = 4, height = 2)
         shotboat4.place(x=1120,y=520)
 
-    
-    #############################################################
-    #행열 입력하는부분 new my move에
-
-    def mymoveinput():
-        temp = Label(window, text = "행 : ",width = 4, height = 2)
-        temp.place(x = 500, y = 480)
-        rowinput = Entry(window, width = 4)
-        rowinput.place(x = 540, y = 480)
-
-        temp = Label(window, text = "열 : ",width = 4, height = 2)
-        temp.place(x = 620, y = 480)
-        columninput = Entry(window, width = 4)
-        columninput.place(x = 660, y = 480)
-
-        row=rowinput.get()
-        column=columninput.get()
-
-        firebutton = Button(window, text = "가즈아~", bg = "alice blue", command = moveok(row,column,eshowboard,eboard))
-        firebutton.place(x = 560, y = 520)
-    
-    def moveok(row,column,eshowboard,eboard):       
-        if ai.movevalid(row,column)==True and eshowboard[i][j]==0:
-            if eboard[i][j]==0:
-                eshowboard[i][j]==1
-            else :
-                 eshowboard[i][j]==eboard[i][j]
-        else:
-            mymoveinput()
-    
-    mymoveinput()
     ###################################################################
     #로그부분
 
+def log(window,myx,myy,ex,ey,num):
     logbox=Listbox(window,width=34,height=22)
     logbox.place(x=480,y=40)
     scrollbar=Scrollbar(window,orient="vertical")
     scrollbar.config(command=logbox.yview)
     scrollbar.pack(side="right",fill="y")
     logbox.config(yscrollcommand=scrollbar.set)
-    logbox.insert(, str(x))
+    logbox.insert()
 
 
