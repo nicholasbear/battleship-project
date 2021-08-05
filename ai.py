@@ -4,44 +4,51 @@ import random
 def initboard():                                                           #따로 보드하나 만듬
     newaiboard= [[0 for col in range(10)] for row in range(10)]
 
-def initnumboat():                                                         #격추시킨 수 초기화
+
+def findboat(mshowboard):                                                  #일단 발견 보트 개수 파악
     boat2=0
     boat3=0
     boat4=0
 
-def findboat(board,boat2,boat3,boat4):                                     #일단 보트상황파악
-    for i in board:
+    for i in mshowboard:
         for j in range(10):
-            if board[i][j]==2:
+            if mshowboard[i][j]==2:
                 boat2+=1
-            elif board[i][j]==3:
+            elif mshowboard[i][j]==3:
                 boat3+=1
-            elif board[i][j]==4:
+            elif mshowboard[i][j]==4:
                 boat4+=1
-        
-    if boat2==0 and boat3==0 and boat4==0:
+
+def findaddboat():                                                         #어떤 보트 추가하는건지 확인       
+    if findboat.boat2==0 and findboat.boat3==0 and findboat.boat4==0:       #랜덤으로 추가해야됨
         return 1
-    elif boat2<2:
+    elif findboat.boat2==1:                                                 #2번배
         return 2
-    elif boat3<3:
+    elif findboat.boat3<3 and findboat.boat3>0:
         return 3
-    elif boat4<4:
+    elif findboat.boat4<4:
         return 4
     else:
-        print("You lost")
         return 0
 
-def movevalid(xpos,ypos,board):                                            #입력하려는 점 확인하는 함수
+def movevalid(xpos,ypos,board):                                             #입력하려는 점 확인하는 함수
     if xpos>=0 and xpos <=9 and ypos>=0 and ypos<=9 and board[xpos][ypos]==0:
         return True
     else :
         return False
 
-def findpos(board,num,boatnum):                                            #배치 확인          num은 몇번 배인지 boatnum은 그 배가 현재 몇번 쏴줬는지 return 값은 입력할 좌표
+def findpos(board,findaddboat):                                            #배치 확인          num은 몇번 배인지 boatnum은 그 배가 현재 몇번 쏴줬는지 return 값은 입력할 좌표
+    if findaddboat==2:
+        boatnum=findboat.boat2
+    if findaddboat==3:
+        boatnum=findboat.boat3
+    if findaddboat==4:
+        boatnum=findboat.boat4
+
     if boatnum==1:       
         for i in board:
             for j in i:
-                if board[i][j]==num:
+                if board[i][j]==findaddboat:
                     if movevalid(i,j+1,board)==True:
                         return i*10+j
                     elif movevalid(i+1,j,board)==True:
@@ -55,7 +62,7 @@ def findpos(board,num,boatnum):                                            #배�
         temp=[0,0,0,0]
         for i in board:
             for j in i:
-                if board[i][j]==num:
+                if board[i][j]==findaddboat:
                     a+=1
                     if a==1:
                         temp[0]=i
@@ -80,7 +87,7 @@ def findpos(board,num,boatnum):                                            #배�
         temp=[0,0,0,0]
         for i in board:
             for j in i:
-                if board[i][j]==num:
+                if board[i][j]==findaddboat:
                     a+=1
                     if a==1:
                         temp[0]=i
@@ -100,29 +107,29 @@ def findpos(board,num,boatnum):                                            #배�
             else :
                 return 10*(temp[0]+3)+temp[1]
 
-def aimove(myboard,aiboard,boat2,boat3,boat4):
-    if findboat==1:                            #보트 찾은 거 없을때 111111111111
+def aimove(myboard,mshowboard):
+    if findaddboat==1:                          #보트 찾은 거 없을때 111111111111
         xpos=random.randrange(0,10)
         ypos=random.randrange(0,10)
-        while(aiboard[xpos][ypos]!=0):         #쏘는 좌표 정하기
+        while(mshowboard[xpos][ypos]!=0):         #쏘는 좌표 정하기
             xpos=random.randrange(0,10)
             ypos=random.randrange(0,10)
 
         if myboard[xpos][ypos]==0:             #보드 변경 해주기
-            aiboard[xpos][ypos]=1
+            mshowboard[xpos][ypos]=1
         else:
-            aiboard[xpos][ypos]=myboard[xpos][ypos]
+            mshowboard[xpos][ypos]=myboard[xpos][ypos]
     
-    elif findboat==2:                           #2번 보트 찾았을때
-        xpos=findpos(aiboard,2,1)/10
-        ypos=findpos(aiboard,2,1)*10
-        aiboard[xpos][ypos]=myboard[xpos][ypos]
+    elif findaddboat==2:                           #2번 보트 찾았을때
+        xpos=findpos(mshowboard,2)/10
+        ypos=findpos(mshowboard,2)*10
+        mshowboard[xpos][ypos]=2
     
-    elif findboat==3:
-        xpos=findpos(aiboard,2,boat3)/10
-        ypos=findpos(aiboard,2,boat3)*10
-        aiboard[xpos][ypos]=myboard[xpos][ypos]
-    else:
-        xpos=findpos(aiboard,2,boat4)/10
-        ypos=findpos(aiboard,2,boat4)*10
-        aiboard[xpos][ypos]=myboard[xpos][ypos]
+    elif findaddboat==2:                           #3번 보트 찾았을때
+        xpos=findpos(mshowboard,3)/10
+        ypos=findpos(mshowboard,3)*10
+        mshowboard[xpos][ypos]=3
+    else:                                          #4번 보트 찾았을때
+        xpos=findpos(mshowboard,4)/10
+        ypos=findpos(mshowboard,4)*10
+        mshowboard[xpos][ypos]=4
