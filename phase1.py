@@ -5,6 +5,57 @@ class phase1:
     arr=[[0 for i in range(10)]for i in range(10)]
     myboard = [[0 for i in range(10)]for i in range(10)]
 
+    def __init__(self):
+        self.window=Tk()
+        self.window.title("phase1")
+        self.window.geometry('500x360')
+        self.window.config(bg = "ghost white")
+
+        self.font1=font.Font(size=15)
+
+        for i in range(10):
+            for j in range(10):
+                self.arr[i][j] = Label(self.window, text = self.myboard[i][j], width = 2, height = 1, font = self.font1, relief="solid", bg = "lavender")
+                self.arr[i][j].place(x = 25*(j+1), y = 25*(i+1))
+
+        self.label1 = Label(self.window, text = "X : ",bg = "ghost white")
+        self.label1.place(x = 300, y = 40)
+        self.entry1 = Entry(self.window, width = 5)
+        self.entry1.place(x = 330, y = 40)
+
+        self.label2 = Label(self.window, text = "Y : ",bg = "ghost white")
+        self.label2.place(x = 400, y = 40)
+        self.entry2 = Entry(self.window, width = 5)
+        self.entry2.place(x = 430, y = 40)
+
+        self.label3 = Label(self.window, text = "가로/세로 : ",bg = "ghost white")
+        self.label3.place(x = 300, y = 80)
+        self.entry3 = Entry(self.window, width = 5)
+        self.entry3.place(x = 370, y = 80)
+
+        self.label4 = Label(self.window, text = "놓을 배의 시작부분의 X좌표, Y좌표, 가로/세로를 입력한 후 배 크기 버튼을 누르세요.",bg = "ghost white")
+        self.label4.place(x = 25, y = 290)
+
+        self.label5 = Label(self.window, text = "", bg = "ghost white", fg = "red")
+        self.label5.place(x = 25, y = 320)
+
+        self.button1 = Button(self.window, text = "2칸 배", bg = "alice blue", command = lambda : self.placeship(2))
+        self.button1.place(x = 310, y = 120)
+
+        self.button2 = Button(self.window, text = "3칸 배", bg = "honeydew", command = lambda : self.placeship(3))
+        self.button2.place(x = 310, y = 160)
+
+        self.button3 = Button(self.window, text = "4칸 배", bg = "ivory", command = lambda : self.placeship(4))
+        self.button3.place(x = 310, y = 200)
+
+        self.button4 = Button(self.window, text = "초기화", command = self.clear)
+        self.button4.place(x = 310, y = 240)
+
+        self.button5 = Button(self.window, text = "완료") #command = phase2
+        self.button5.place(x = 430, y = 240)
+
+        self.window.mainloop()
+
     def placeship(self,shipsize):
         col = int(self.entry1.get())-1       #x좌표는 colon
         if col > 11 - shipsize or col < 0:
@@ -48,54 +99,5 @@ class phase1:
                 self.arr[i][j].config(text = 0)
                 self.myboard[i][j] = 0
 
-    window=Tk()
-    window.title("phase1")
-    window.geometry('500x360')
-    window.config(bg = "ghost white")
-
-    font1=font.Font(size=15)
-
-    row_index = 0
-    col_index = 0
-    for i in range(10):
-        for j in range(10):
-            arr[i][j] = Label(window, text = myboard[i][j], width = 2, height = 1, font = font1, relief="solid", bg = "lavender")
-            arr[i][j].place(x = 25*(j+1), y = 25*(i+1))
-
-    label1 = Label(window, text = "X : ",bg = "ghost white")
-    label1.place(x = 300, y = 40)
-    entry1 = Entry(window, width = 5)
-    entry1.place(x = 330, y = 40)
-
-    label2 = Label(window, text = "Y : ",bg = "ghost white")
-    label2.place(x = 400, y = 40)
-    entry2 = Entry(window, width = 5)
-    entry2.place(x = 430, y = 40)
-
-    label3 = Label(window, text = "가로/세로 : ",bg = "ghost white")
-    label3.place(x = 300, y = 80)
-    entry3 = Entry(window, width = 5)
-    entry3.place(x = 370, y = 80)
-
-    label4 = Label(window, text = "놓을 배의 시작부분의 X좌표, Y좌표, 가로/세로를 입력한 후 배 크기 버튼을 누르세요.",bg = "ghost white")
-    label4.place(x = 25, y = 290)
-
-    label5 = Label(window, text = "", bg = "ghost white", fg = "red")
-    label5.place(x = 25, y = 320)
-
-    button1 = Button(window, text = "2칸 배", bg = "alice blue", command = lambda : placeship(2))
-    button1.place(x = 310, y = 120)
-
-    button2 = Button(window, text = "3칸 배", bg = "honeydew", command = lambda : placeship(3))
-    button2.place(x = 310, y = 160)
-
-    button3 = Button(window, text = "4칸 배", bg = "ivory", command = lambda : placeship(4))
-    button3.place(x = 310, y = 200)
-
-    button4 = Button(window, text = "초기화", command = clear)
-    button4.place(x = 310, y = 240)
-
-    button5 = Button(window, text = "완료") #command = phase2
-    button5.place(x = 430, y = 240)
-
-    window.mainloop()
+Phase1 = phase1()
+Phase1.mainloop()
