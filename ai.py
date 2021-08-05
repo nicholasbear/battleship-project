@@ -5,33 +5,34 @@ def initboard():                                                           #따�
     newaiboard= [[0 for col in range(10)] for row in range(10)]
 
 
-def findboat(mshowboard):                                                  #일단 발견 보트 개수 파악
+def findboat(board):                                                  #일단 발견 보트 개수 파악
     boat2=0
     boat3=0
     boat4=0
 
-    for i in mshowboard:
+    for i in board:
         for j in range(10):
-            if mshowboard[i][j]==2:
+            if board[i][j]==2:
                 boat2+=1
-            elif mshowboard[i][j]==3:
+            elif board[i][j]==3:
                 boat3+=1
-            elif mshowboard[i][j]==4:
+            elif board[i][j]==4:
                 boat4+=1
 
-def findaddboat():                                                         #어떤 보트 추가하는건지 확인       
-    if findboat.boat2==0 and findboat.boat3==0 and findboat.boat4==0:       #랜덤으로 추가해야됨
+def findaddboat(board):                                                         #어떤 보트 추가하는건지 확인
+          
+    if findboat(board).boat2==0 and findboat(board).boat3==0 and findboat(board).boat4==0:           #랜덤으로 추가해야됨
         return 1
-    elif findboat.boat2==1:                                                 #2번배
+    elif findboat(board).boat2==1:                                                     #2번배
         return 2
-    elif findboat.boat3<3 and findboat.boat3>0:
+    elif findboat(board).boat3<3 and findboat(board).boat3>0:
         return 3
-    elif findboat.boat4<4:
+    elif findboat(board).boat4<4:
         return 4
     else:
         return 0
 
-def movevalid(xpos,ypos,board):                                             #입력하려는 점 확인하는 함수
+def movevalid(xpos,ypos,board):                                                  #입력하려는 점 확인하는 함수
     if xpos>=0 and xpos <=9 and ypos>=0 and ypos<=9 and board[xpos][ypos]==0:
         return True
     else :

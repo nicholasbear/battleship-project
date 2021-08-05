@@ -67,45 +67,65 @@ def show2(eshowboard,mshowboard):
     #격추됐는지 표시부분
     temp = Label(window,text='2번배',width = 4, height = 2)
     temp.place(x=40,y=480)
-    shotboat2 = Label(window,text='',width = 4, height = 2)
-    shotboat2.place(x=40,y=520)
+    if ai.findboat(mshowboard).boat2==2:
+        shotboat2 = Label(window,text='격추됨',width = 4, height = 2)
+        shotboat2.place(x=40,y=520)
     temp = Label(window,text='3번배',width = 4, height = 2)
     temp.place(x=200,y=480)
-    shotboat3 = Label(window,text='',width = 4, height = 2)
-    shotboat3.place(x=200,y=520)
+    if ai.findboat(mshowboard).boat3==3:
+        shotboat3 = Label(window,text='',width = 4, height = 2)
+        shotboat3.place(x=200,y=520)
     temp = Label(window,text='4번배',width = 4, height = 2)
     temp.place(x=360,y=480)
-    shotboat4 = Label(window,text='',width = 4, height = 2)
-    shotboat4.place(x=360,y=520)
+    if ai.findboat(mshowboard).boat4==4:
+        shotboat4 = Label(window,text='',width = 4, height = 2)
+        shotboat4.place(x=360,y=520)
     temp = Label(window,text='2번배',width = 4, height = 2)
     temp.place(x=800,y=480)
-    shotboat2 = Label(window,text='',width = 4, height = 2)
-    shotboat2.place(x=800,y=520)
+    if ai.findboat(eshowboard).boat2==2:
+        shotboat2 = Label(window,text='',width = 4, height = 2)
+        shotboat2.place(x=800,y=520)
     temp = Label(window,text='3번배',width = 4, height = 2)
     temp.place(x=960,y=480)
-    shotboat3 = Label(window,text='',width = 4, height = 2)
-    shotboat3.place(x=960,y=520)
+    if ai.findboat(eshowboard).boat3==3:
+        shotboat3 = Label(window,text='',width = 4, height = 2)
+        shotboat3.place(x=960,y=520)
     temp = Label(window,text='4번배',width = 4, height = 2)
     temp.place(x=1120,y=480)
-    shotboat4 = Label(window,text='',width = 4, height = 2)
-    shotboat4.place(x=1120,y=520)
+    if ai.findboat(eshowboard).boat4==4:
+        shotboat4 = Label(window,text='',width = 4, height = 2)
+        shotboat4.place(x=1120,y=520)
 
     
     #############################################################
     #행열 입력하는부분
-    temp = Label(window, text = "행 : ",width = 4, height = 2)
-    temp.place(x = 500, y = 480)
-    rowinput = Entry(window, width = 4)
-    rowinput.place(x = 540, y = 480)
+    def mymoveinput():
+        temp = Label(window, text = "행 : ",width = 4, height = 2)
+        temp.place(x = 500, y = 480)
+        rowinput = Entry(window, width = 4)
+        rowinput.place(x = 540, y = 480)
 
-    temp = Label(window, text = "열 : ",width = 4, height = 2)
-    temp.place(x = 620, y = 480)
-    columninput = Entry(window, width = 4)
-    columninput.place(x = 660, y = 480)
+        temp = Label(window, text = "열 : ",width = 4, height = 2)
+        temp.place(x = 620, y = 480)
+        columninput = Entry(window, width = 4)
+        columninput.place(x = 660, y = 480)
 
-    firebutton = Button(window, text = "가즈아~", bg = "alice blue", command = ###############)
-    firebutton.place(x = 560, y = 520)
+        row=rowinput.get()
+        column=columninput.get()
+
+        firebutton = Button(window, text = "가즈아~", bg = "alice blue", command = moveok(row,column,eshowboard,eboard))
+        firebutton.place(x = 560, y = 520)
     
+    def moveok(row,column,eshowboard,eboard):       
+        if ai.movevalid(row,column)==True and eshowboard[i][j]==0:
+            if eboard[i][j]==0:
+                eshowboard[i][j]==1
+            else :
+                 eshowboard[i][j]==eboard[i][j]
+        else:
+            mymoveinput()
+    
+    mymoveinput()
     ###################################################################
     #로그부분
 
@@ -115,7 +135,6 @@ def show2(eshowboard,mshowboard):
     scrollbar.config(command=logbox.yview)
     scrollbar.pack(side="right",fill="y")
     logbox.config(yscrollcommand=scrollbar.set)
-    for x in range(1000):
-        logbox.insert(END, str(x))
+    logbox.insert(, str(x))
 
 
