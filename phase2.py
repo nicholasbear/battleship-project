@@ -5,19 +5,12 @@ import tkinter
 import newmyboard
 from tkinter import *
 
-def show2(eshowboard,mshowboard):
+def show2(eshowboard,mshowboard,eboard,mboard):
     window=tkinter.Tk()
     window.title("Battleship by 머저리")
     window.geometry("1220x640+100+100")
     window.resizable(False, False)
     
-    eboard=enemyboard.Enemyboard()                      #enemyboard 설정함
-    eboard.clear()
-    eboard.get_ship(4)
-    eboard.get_ship(3)
-    eboard.get_ship(2)
-    mboard= newmyboard.my_board                         #myboard 설정함
-
     
     #display 되는 부분 //////////////////////////////////////////////////////////////////////////////////////////
     me = Label(window,text='Player',width = 4, height = 2, fg="black")                        #위에 타이틀
@@ -26,6 +19,7 @@ def show2(eshowboard,mshowboard):
     log.place(x=580,y=0,width=40,height=40)
     com = Label(window,text='Com',width = 4, height = 2, fg="black")
     com.place(x=940,y=0,width=40,height=40)
+    
     ##########################################
     for i in range(10):                                                                       # 보드 표시부분
         for j in range(10):
