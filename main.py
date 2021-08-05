@@ -1,12 +1,10 @@
 import ai
 import enemyboard
-import myboard
 import phase1
 import phase2
 import tkinter.messagebox as msgbox
 import tkinter
 from tkinter import *
-import newmymove
 
 ##### 첫번쨰 페이지
 
