@@ -35,8 +35,3 @@ class Enemyboard:
             else:
                 self.get_ship(shipsize)
 
-enemyboard = Enemyboard()
-enemyboard.clear()
-enemyboard.get_ship(4)
-enemyboard.get_ship(3)
-enemyboard.get_ship(2)

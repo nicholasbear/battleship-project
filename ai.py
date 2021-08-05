@@ -7,6 +7,8 @@ class aimove:
     boat2=0
     boat3=0
     boat4=0
+    xpos=0
+    ypos=0
 
     def initboat(self):                                                       #보트수 초기화
         self.boat2=0

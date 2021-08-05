@@ -88,6 +88,8 @@ def log(window,myx,myy,ex,ey,num):
     scrollbar.config(command=logbox.yview)
     scrollbar.pack(side="right",fill="y")
     logbox.config(yscrollcommand=scrollbar.set)
-    logbox.insert()
+    if num!=0:
+        logbox.insert("user "+ex+","+ey+"에놓음 "+num+"회")
+        logbox.insert("user "+myx+","+myy+"에놓음 "+num+"회")
 
 
