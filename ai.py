@@ -35,7 +35,7 @@ class aimove:
         else:
             return 0
 
-    def movevalid(xpos,ypos,self):                                             #입력하려는 점 확인하는 함수
+    def movevalid(xpos,ypos,self):                                            #입력하려는 점 확인하는 함수
         if xpos>=0 and xpos <=9 and ypos>=0 and ypos<=9 and self.mshowboard[xpos][ypos]==0:
             return True
         else :
