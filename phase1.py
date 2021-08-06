@@ -1,5 +1,6 @@
 from tkinter import *
 from tkinter import font
+import main
 
 class phase1:
     arr=[[0 for i in range(10)]for i in range(10)]
@@ -51,7 +52,7 @@ class phase1:
         self.button4 = Button(self.window, text = "초기화", command = self.clear)
         self.button4.place(x = 310, y = 240)
 
-        self.button5 = Button(self.window, text = "완료",command=) #command = phase2
+        self.button5 = Button(self.window, text = "완료",command=main.second) #command = phase2
         self.button5.place(x = 430, y = 240)
 
         self.window.mainloop()
