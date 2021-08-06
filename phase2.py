@@ -33,12 +33,17 @@ class page2:
 
         mymmove=mymove.mymove()
 
+        myx=0
+        myy=0
+        ex=0
+        ey=0
+
         while(mshowboard.findboat!=0):
             num=0
             self.mshowboardgui(mshowboard,self.window)
             self.eshowboardgui(eshowboard,self.window)
             self.ifeboatcrashed(eshowboard,self.window)
-            self.ifmyboatcrashed(mshowboard,self.window)
+            self.ifmyboatcrashed(mshowboard.mshowboard,self.window)
             self.log(self.window,myx,myy,ex,ey,num)
             
             if mshowboard.findaddboat()==0:
@@ -66,26 +71,26 @@ class page2:
 
 
 
-    def mshowboardgui(mshowboard,window):   
+    def mshowboardgui(self,mshowboard,window):   
         for i in range(10):                                                                       # 보드 표시부분
             for j in range(10):
-                if mshowboard[i][j]==0:
+                if mshowboard.mshowboard[i][j]==0:                 
                     test = Label(window,width = 4, height = 2, relief="solid", bg = "lavender")
                     test.place(x=40*i+40,y=40*j+40,width=40,height=40)
-                elif mshowboard[i][j]==1:
+                elif mshowboard.mshowboard[i][j]==1:
                     test = Label(window,width = 4, height = 2, relief="solid", bg = "black")
                     test.place(x=40*i+40,y=40*j+40,width=40,height=40)
-                elif mshowboard[i][j]==2:
+                elif mshowboard.mshowboard[i][j]==2:
                     test = Label(window,text='2',width = 4, height = 2, relief="solid", bg = "yellow")
                     test.place(x=40*i+40,y=40*j+40,width=40,height=40)
-                elif mshowboard[i][j]==3:
+                elif mshowboard.mshowboard[i][j]==3:
                     test = Label(window,text='3',width = 4, height = 2, relief="solid", bg = "red")
                     test.place(x=40*i+40,y=40*j+40,width=40,height=40)
-                elif mshowboard[i][j]==4:
+                elif mshowboard.mshowboard[i][j]==4:
                     test = Label(window,text='4',width = 4, height = 2, relief="solid", bg = "blue")
                     test.place(x=40*i+40,y=40*j+40,width=40,height=40)
 
-    def eshowboardgui(eshowboard,window):
+    def eshowboardgui(self,eshowboard,window):
         for i in range(10):                                                         
             for j in range(10):
                 if eshowboard[i][j]==0:
@@ -105,44 +110,41 @@ class page2:
                     test.place(x=40*(i+19),y=40*j+40,width=40,height=40)
 
 
-    def ifmyboatcrashed(mshowboard,window):
+    def ifmyboatcrashed(self,mshowboard,window):
         temp = Label(window,text='2번배',width = 4, height = 2)
         temp.place(x=40,y=480)
-        if ai.findboat(mshowboard).boat2==2:
+        if self.countboat(2,mshowboard)==2:
             shotboat2 = Label(window,text='격추됨',width = 4, height = 2)
             shotboat2.place(x=40,y=520)
         temp = Label(window,text='3번배',width = 4, height = 2)
         temp.place(x=200,y=480)
-        if ai.findboat(mshowboard).boat3==3:
+        if self.countboat(3,mshowboard)==3:
             shotboat3 = Label(window,text='격추됨',width = 4, height = 2)
             shotboat3.place(x=200,y=520)
         temp = Label(window,text='4번배',width = 4, height = 2)
         temp.place(x=360,y=480)
-        if ai.findboat(mshowboard).boat4==4:
+        if self.countboat(4,mshowboard)==4:
             shotboat4 = Label(window,text='격추됨',width = 4, height = 2)
             shotboat4.place(x=360,y=520)
 
-    def ifeboatcrashed(eshowboard,window):
+    def ifeboatcrashed(self,eshowboard,window):
         temp = Label(window,text='2번배',width = 4, height = 2)
         temp.place(x=800,y=480)
-        if ai.findboat(eshowboard).boat2==2:
+        if self.countboat(2,eshowboard)==2:
             shotboat2 = Label(window,text='격추됨',width = 4, height = 2)
             shotboat2.place(x=800,y=520)
         temp = Label(window,text='3번배',width = 4, height = 2)
         temp.place(x=960,y=480)
-        if ai.findboat(eshowboard).boat3==3:
+        if self.countboat(3,eshowboard)==3:
             shotboat3 = Label(window,text='격추됨',width = 4, height = 2)
             shotboat3.place(x=960,y=520)
         temp = Label(window,text='4번배',width = 4, height = 2)
         temp.place(x=1120,y=480)
-        if ai.findboat(eshowboard).boat4==4:
+        if self.countboat(4,eshowboard)==4:
             shotboat4 = Label(window,text='격추됨',width = 4, height = 2)
             shotboat4.place(x=1120,y=520)
 
-        ###################################################################
-        #로그부분
-
-    def log(window,myx,myy,ex,ey,num):
+    def log(self,window,myx,myy,ex,ey,num):                                                 #로그창
         logbox=Listbox(window,width=34,height=22)
         logbox.place(x=480,y=40)
         scrollbar=Scrollbar(window,orient="vertical")
@@ -152,5 +154,48 @@ class page2:
         if num!=0:
             logbox.insert("user "+ex+","+ey+"에놓음 "+num+"회")
             logbox.insert("user "+myx+","+myy+"에놓음 "+num+"회")
+
+    def countboat(self,boatnum,board):                                                     #몇번배가 몇개있는지 세는 함수
+        num=0
+        for i in range(10):
+            for j in range(10):
+                if board[i][j]==boatnum:
+                    num+=1
+        return num
+    
+    def mymoveinput(self,window,eshowboard,eboard):                                        #내가 쏘는 좌표 입력하는 함수
+        
+        temp = Label(window, text = "행 : ",width = 4, height = 2)
+        temp.place(x = 500, y = 480)
+        rowinput = Entry(window, width = 4)
+        rowinput.place(x = 540, y = 480)
+
+        temp = Label(window, text = "열 : ",width = 4, height = 2)
+        temp.place(x = 620, y = 480)
+        columninput = Entry(window, width = 4)
+        columninput.place(x = 660, y = 480)
+
+        row=columninput.get()-1
+        column=11-rowinput.get()
+        
+
+        firebutton = Button(window, text = "가즈아~", bg = "alice blue", command = self.moveok(row,column,eshowboard,eboard))
+        firebutton.place(x = 560, y = 520)
+        
+    def moveok(self,row,column,eshowboard,eboard):                                         #이점에 쏠수 있는지 검사하는 함수 
+        if self.movevalid(row,column,eshowboard)==True :
+            if eboard[row][column]==0:
+                eshowboard[row][column]==1
+            else :
+                eshowboard[row][column]==eboard[row][column]
+        else:
+            self.mymoveinput()
+
+
+    def movevalid(self,xpos,ypos,mshowboard):                                                  #입력하려는 점 확인하는 함수
+            if xpos>=0 and xpos <=9 and ypos>=0 and ypos<=9 and mshowboard[xpos][ypos]==0:
+                return True
+            else :
+                return False
 
 damn=page2()
