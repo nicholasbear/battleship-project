@@ -51,7 +51,7 @@ class phase1:
         self.button4 = Button(self.window, text = "초기화", command = self.clear)
         self.button4.place(x = 310, y = 240)
 
-        self.button5 = Button(self.window, text = "완료") #command = phase2
+        self.button5 = Button(self.window, text = "완료",command=) #command = phase2
         self.button5.place(x = 430, y = 240)
 
         self.window.mainloop()
@@ -99,5 +99,3 @@ class phase1:
                 self.arr[i][j].config(text = 0)
                 self.myboard[i][j] = 0
 
-Phase1 = phase1()
-Phase1.mainloop()

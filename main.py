@@ -2,6 +2,7 @@ import ai
 import enemyboard
 import phase1
 import phase2
+import mymove
 import tkinter.messagebox as msgbox
 import tkinter
 from tkinter import *
@@ -22,15 +23,20 @@ from tkinter import *
 
 
 #### 두번째 페이지                                                      #보드 4개 먼저 초기화
-mboard=phase1.phase1.myboard
+mboard=phase1.phase1()
+mboard.__init__
+
 eboard= enemyboard.Enemyboard()
 eboard.clear()
 eboard.get_ship(4)
 eboard.get_ship(3)
 eboard.get_ship(2)
-mshowboard=ai.aimove()   
+
+mshowboard=ai.aimove()
+
 eshowboard=[[0 for col in range(10)] for row in range(10)]
-mymmove=newmymove.mymove()
+
+mymmove=mymove.mymove()
 ###
 #윈도우 및 위에 글자들
 window=tkinter.Tk()
@@ -63,10 +69,10 @@ while(mshowboard.findboat!=0):
         msgbox.showinfo("승리했습니다")
         break
 
-    newmymove.mymoveinput(window,eshowboard,eboard)                                    #내가 둔수
+    mymmove.mymoveinput(window,eshowboard,eboard.enemy_board)                                      #내가 둔수
     mshowboard.initboat()                                                              #적이 둔수
     mshowboard.findboat()
-    mshowboard.aimove(mboard)
+    mshowboard.aimove(mboard.myboard)
     myx=mshowboard.xpos
     myy=mshowboard.ypos
     ex=mymmove.row

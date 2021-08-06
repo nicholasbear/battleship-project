@@ -2,7 +2,6 @@ import ai
 import enemyboard
 import random
 import tkinter
-import newmyboard
 from tkinter import *
 class mymove:
     row=0
@@ -20,8 +19,9 @@ class mymove:
         columninput = Entry(window, width = 4)
         columninput.place(x = 660, y = 480)
 
-        row=rowinput.get()
-        column=columninput.get()
+        row=columninput.get()-1
+        column=11-rowinput.get()
+        
 
         firebutton = Button(window, text = "가즈아~", bg = "alice blue", command = self.moveok(row,column,eshowboard,eboard))
         firebutton.place(x = 560, y = 520)

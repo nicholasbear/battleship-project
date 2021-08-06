@@ -2,7 +2,6 @@ import ai
 import enemyboard
 import random
 import tkinter
-import newmyboard
 from tkinter import *
 
 def mshowboardgui(mshowboard,window):   
