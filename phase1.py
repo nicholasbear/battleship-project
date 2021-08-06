@@ -1,7 +1,5 @@
 from tkinter import *
 from tkinter import font
-import main
-import phase2
 
 class page1:
     arr=[[0 for i in range(10)]for i in range(10)]

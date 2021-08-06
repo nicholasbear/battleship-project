@@ -1,5 +1,4 @@
 import ai
-import main
 import enemyboard
 import mymove
 import random
