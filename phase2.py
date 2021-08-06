@@ -2,18 +2,17 @@ import ai
 import enemyboard
 import mymove
 import random
-import phase1
 import tkinter
 from tkinter import *
+
 import tkinter.messagebox as msgbox
 
 class page2:
-
-    def _init_(self):
-        self.window=tkinter.Tk()
+    def __init__(self):
+        self.window=Tk()
         self.window.title("Battleship by 머저리")
         self.window.geometry("1220x640+100+100")
-        self.window.resizable(False, False)
+
         me = Label(self.window,text='Player',width = 4, height = 2, fg="black")                        #위에 타이틀
         me.place(x=220,y=0,width=40,height=40)
         log = Label(self.window,text='log',width = 4, height = 2, fg="black")                          #위에 타이틀
@@ -21,8 +20,8 @@ class page2:
         com = Label(self.window,text='Com',width = 4, height = 2, fg="black")
         com.place(x=940,y=0,width=40,height=40)
 
-        mboard=main.firstpage.myboard
-        eboard= enemyboard.Enemyboard()
+        mboard=[[0 for col in range(10)] for row in range(10)]
+        eboard=enemyboard.Enemyboard()
         eboard.clear()
         eboard.get_ship(4)
         eboard.get_ship(3)
@@ -33,6 +32,8 @@ class page2:
         eshowboard=[[0 for col in range(10)] for row in range(10)]
 
         mymmove=mymove.mymove()
+
+        self.window.mainloop()
 
         while(mshowboard.findboat!=0):
             num=0
@@ -67,7 +68,7 @@ class page2:
 
 
 
-    def mshowboardgui(mshowboard,window):   
+    def mshowboardgui(self,mshowboard,window):   
         for i in range(10):                                                                       # 보드 표시부분
             for j in range(10):
                 if mshowboard[i][j]==0:
@@ -86,7 +87,7 @@ class page2:
                     test = Label(window,text='4',width = 4, height = 2, relief="solid", bg = "blue")
                     test.place(x=40*i+40,y=40*j+40,width=40,height=40)
 
-    def eshowboardgui(eshowboard,window):
+    def eshowboardgui(self,eshowboard,window):
         for i in range(10):                                                         
             for j in range(10):
                 if eshowboard[i][j]==0:
@@ -106,7 +107,7 @@ class page2:
                     test.place(x=40*(i+19),y=40*j+40,width=40,height=40)
 
 
-    def ifmyboatcrashed(mshowboard,window):
+    def ifmyboatcrashed(self,mshowboard,window):
         temp = Label(window,text='2번배',width = 4, height = 2)
         temp.place(x=40,y=480)
         if ai.findboat(mshowboard).boat2==2:
@@ -123,7 +124,7 @@ class page2:
             shotboat4 = Label(window,text='격추됨',width = 4, height = 2)
             shotboat4.place(x=360,y=520)
 
-    def ifeboatcrashed(eshowboard,window):
+    def ifeboatcrashed(self,eshowboard,window):
         temp = Label(window,text='2번배',width = 4, height = 2)
         temp.place(x=800,y=480)
         if ai.findboat(eshowboard).boat2==2:
@@ -143,7 +144,7 @@ class page2:
         ###################################################################
         #로그부분
 
-    def log(window,myx,myy,ex,ey,num):
+    def log(self,window,myx,myy,ex,ey,num):
         logbox=Listbox(window,width=34,height=22)
         logbox.place(x=480,y=40)
         scrollbar=Scrollbar(window,orient="vertical")
@@ -154,4 +155,4 @@ class page2:
             logbox.insert("user "+ex+","+ey+"에놓음 "+num+"회")
             logbox.insert("user "+myx+","+myy+"에놓음 "+num+"회")
 
-
+page2()

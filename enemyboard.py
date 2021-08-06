@@ -34,4 +34,3 @@ class Enemyboard:
                     self.enemy_board[a+i][b] = shipsize
             else:
                 self.get_ship(shipsize)
-
