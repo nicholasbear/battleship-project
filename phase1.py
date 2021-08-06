@@ -1,5 +1,6 @@
 from tkinter import *
 from tkinter import font
+import phase2
 
 class page1:
     arr=[[0 for i in range(10)]for i in range(10)]
@@ -90,7 +91,7 @@ class page1:
             if sum == 0:
                 for i in range (shipsize):
                     self.myboard[row-i][col] = shipsize
-                    self.arr[row-i][col].config(text = shipsize, bg = "thiltle")
+                    self.arr[row-i][col].config(text = shipsize, bg = "thistle")
                 self.destroybutton(shipsize)
             else:
                 self.label5.config(text = "기존의 배와 겹칩니다. 다시 입력해주세요.", fg = "red")    
@@ -117,6 +118,8 @@ class page1:
                 sum += self.myboard[i][j]
         if sum == 29:
             self.window.destroy()
-            #command2
+            phase2.page2()
         else:
             self.label5.config(text = "배 3개를 모두 넣어주세요.", fg = "red")
+
+page1()
