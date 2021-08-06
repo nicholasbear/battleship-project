@@ -2,14 +2,13 @@ import ai
 import enemyboard
 import mymove
 import random
-import phase1
 import tkinter
 from tkinter import *
 import tkinter.messagebox as msgbox
 
 class page2:
 
-    def _init_(self):
+    def __init__(self):
         self.window=tkinter.Tk()
         self.window.title("Battleship by 머저리")
         self.window.geometry("1220x640+100+100")
@@ -21,7 +20,7 @@ class page2:
         com = Label(self.window,text='Com',width = 4, height = 2, fg="black")
         com.place(x=940,y=0,width=40,height=40)
 
-        mboard=main.firstpage.myboard
+        mboard=[[0 for col in range(10)] for row in range(10)]
         eboard= enemyboard.Enemyboard()
         eboard.clear()
         eboard.get_ship(4)
@@ -53,8 +52,8 @@ class page2:
                 msgbox.showinfo("승리했습니다")
                 break
 
-            mymmove.mymoveinput(self.window,eshowboard,eboard.enemy_board)                          #내가 둔수
-            mshowboard.initboat()                                                              #적이 둔수
+            mymmove.mymoveinput(self.window,eshowboard,eboard.enemy_board)                        #내가 둔수
+            mshowboard.initboat()                                                                 #적이 둔수
             mshowboard.findboat()
             mshowboard.aimove(mboard.myboard)
             myx=mshowboard.xpos
@@ -154,4 +153,4 @@ class page2:
             logbox.insert("user "+ex+","+ey+"에놓음 "+num+"회")
             logbox.insert("user "+myx+","+myy+"에놓음 "+num+"회")
 
-
+damn=page2()
