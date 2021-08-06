@@ -1,6 +1,5 @@
 from tkinter import *
 from tkinter import font
-import phase2
 
 class page1:
     arr=[[0 for i in range(10)]for i in range(10)]
@@ -49,10 +48,10 @@ class page1:
         self.button3 = Button(self.window, text = "4칸 배", bg = "ivory", command = lambda : self.placeship(4))
         self.button3.place(x = 310, y = 200)
 
-        self.button4 = Button(self.window, text = "초기화", command = self.clear)
+        self.button4 = Button(self.window, text = "초기화", bg = "mistyrose", command = self.clear)
         self.button4.place(x = 310, y = 240)
 
-        self.button5 = Button(self.window, text = "완료",command=phase2.page2()) #command = phase2
+        self.button5 = Button(self.window, text = "완료", bg = "thistle", command = self.open_phase2)
         self.button5.place(x = 430, y = 240)
 
         self.window.mainloop()
@@ -80,9 +79,10 @@ class page1:
             if sum == 0:
                 for i in range (shipsize):
                     self.myboard[row][col+i] = shipsize
-                    self.arr[row][col+i].config(text = shipsize)
+                    self.arr[row][col+i].config(text = shipsize, bg = "thistle")
+                self.destroybutton(shipsize)
             else:
-                self.label5.config(text = "기존의 배와 겹칩니다. 다시 입력해주세요.")
+                self.label5.config(text = "기존의 배와 겹칩니다. 다시 입력해주세요.", fg = "red")
 
         if dir == 2: #배가 세로로 놓임
             for i in range (shipsize):
@@ -93,9 +93,10 @@ class page1:
                     self.arr[row-i][col].config(text = shipsize, bg = "thistle")
                 self.destroybutton(shipsize)
             else:
-                self.label5.config(text = "기존의 배와 겹칩니다. 다시 입력해주세요.")    
+                self.label5.config(text = "기존의 배와 겹칩니다. 다시 입력해주세요.", fg = "red")    
 
     def clear(self):
+        self.window.destroy()
         for i in range(10):
             for j in range(10):
                 self.myboard[i][j] = 0        
