@@ -1,7 +1,9 @@
 from tkinter import *
 from tkinter import font
+import main
+import phase2
 
-class phase1:
+class page1:
     arr=[[0 for i in range(10)]for i in range(10)]
     myboard = [[0 for i in range(10)]for i in range(10)]
 
@@ -100,7 +102,7 @@ class phase1:
         for i in range(10):
             for j in range(10):
                 self.myboard[i][j] = 0        
-        phase1()
+        page1()
 
     def destroybutton(self,shipsize):
         if shipsize == 2:
