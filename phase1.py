@@ -90,19 +90,14 @@ class page1:
             if sum == 0:
                 for i in range (shipsize):
                     self.myboard[row-i][col] = shipsize
-<<<<<<< HEAD
                     self.arr[row-i][col].config(text = shipsize, bg = "thistle")
                 self.destroybutton(shipsize)
-=======
-                    self.arr[row-i][col].config(text = shipsize)
->>>>>>> 74a96285f2c2badd6b863d53215ddc3de5cd35d6
             else:
                 self.label5.config(text = "기존의 배와 겹칩니다. 다시 입력해주세요.")    
 
     def clear(self):
         for i in range(10):
             for j in range(10):
-<<<<<<< HEAD
                 self.myboard[i][j] = 0        
         page1()
 
@@ -126,8 +121,3 @@ class page1:
             self.label5.config(text = "배 3개를 모두 넣어주세요.", fg = "red")
 
 page1()
-=======
-                self.arr[i][j].config(text = 0)
-                self.myboard[i][j] = 0
-
->>>>>>> 74a96285f2c2badd6b863d53215ddc3de5cd35d6
