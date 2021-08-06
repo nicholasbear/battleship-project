@@ -24,7 +24,6 @@ from tkinter import *
 
 #### 두번째 페이지                                                      #보드 4개 먼저 초기화
 mboard=phase1.phase1()
-mboard.__init__
 
 eboard= enemyboard.Enemyboard()
 eboard.clear()
