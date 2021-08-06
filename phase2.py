@@ -8,18 +8,18 @@ import tkinter
 from tkinter import *
 import tkinter.messagebox as msgbox
 
-class phase2:
+class page2:
 
     def _init_(self):
-        window=tkinter.Tk()
-        window.title("Battleship by 머저리")
-        window.geometry("1220x640+100+100")
-        window.resizable(False, False)
-        me = Label(window,text='Player',width = 4, height = 2, fg="black")                        #위에 타이틀
+        self.window=tkinter.Tk()
+        self.window.title("Battleship by 머저리")
+        self.window.geometry("1220x640+100+100")
+        self.window.resizable(False, False)
+        me = Label(self.window,text='Player',width = 4, height = 2, fg="black")                        #위에 타이틀
         me.place(x=220,y=0,width=40,height=40)
-        log = Label(window,text='log',width = 4, height = 2, fg="black")                          #위에 타이틀
+        log = Label(self.window,text='log',width = 4, height = 2, fg="black")                          #위에 타이틀
         log.place(x=580,y=0,width=40,height=40)
-        com = Label(window,text='Com',width = 4, height = 2, fg="black")
+        com = Label(self.window,text='Com',width = 4, height = 2, fg="black")
         com.place(x=940,y=0,width=40,height=40)
 
         mboard=main.firstpage.myboard
@@ -37,11 +37,11 @@ class phase2:
 
         while(mshowboard.findboat!=0):
             num=0
-            phase2.mshowboardgui(mshowboard,window)
-            phase2.eshowboardgui(eshowboard,window)
-            phase2.ifeboatcrashed(eshowboard,window)
-            phase2.ifmyboatcrashed(mshowboard,window)
-            phase2.log(window,myx,myy,ex,ey,num)
+            self.mshowboardgui(mshowboard,self.window)
+            self.eshowboardgui(eshowboard,self.window)
+            self.ifeboatcrashed(eshowboard,self.window)
+            self.ifmyboatcrashed(mshowboard,self.window)
+            self.log(self.window,myx,myy,ex,ey,num)
             
             if mshowboard.findaddboat()==0:
                 root = Tk()
@@ -54,7 +54,7 @@ class phase2:
                 msgbox.showinfo("승리했습니다")
                 break
 
-            mymmove.mymoveinput(window,eshowboard,eboard.enemy_board)                          #내가 둔수
+            mymmove.mymoveinput(self.window,eshowboard,eboard.enemy_board)                          #내가 둔수
             mshowboard.initboat()                                                              #적이 둔수
             mshowboard.findboat()
             mshowboard.aimove(mboard.myboard)
@@ -62,7 +62,8 @@ class phase2:
             myy=mshowboard.ypos
             ex=mymmove.row
             ey=mymmove.column
-            num+=1                     
+            num+=1  
+        self.window.mainloop()                   
 
 
 
