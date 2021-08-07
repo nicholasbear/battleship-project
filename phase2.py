@@ -1,6 +1,5 @@
 import ai
 import enemyboard
-import mymove
 import random
 import tkinter
 from tkinter import *
@@ -31,7 +30,7 @@ class page2:
 
         eshowboard=[[0 for col in range(10)] for row in range(10)]
 
-        mymmove=mymove.mymove()
+        
 
         myx=0
         myy=0
@@ -57,22 +56,21 @@ class page2:
                 msgbox.showinfo("승리했습니다")
                 break
 
-            mymmove.mymoveinput(self.window,eshowboard,eboard.enemy_board)                        #내가 둔수
+            self.mymoveinput(self.window,eshowboard,eboard.enemy_board)                           #내가 둔수
             mshowboard.initboat()                                                                 #적이 둔수
             mshowboard.findboat()
             mshowboard.aimove(mboard.myboard)
             myx=mshowboard.xpos
             myy=mshowboard.ypos
-            ex=mymmove.row
-            ey=mymmove.column
+            
             num+=1  
         self.window.mainloop()                   
 
 
 
 
-    def mshowboardgui(self,mshowboard,window):   
-        for i in range(10):                                                                       # 보드 표시부분
+    def mshowboardgui(self,mshowboard,window):                                                     #내보드 출력하는 함수
+        for i in range(10):                                                                      
             for j in range(10):
                 if mshowboard.mshowboard[i][j]==0:                 
                     test = Label(window,width = 4, height = 2, relief="solid", bg = "lavender")
@@ -90,7 +88,7 @@ class page2:
                     test = Label(window,text='4',width = 4, height = 2, relief="solid", bg = "blue")
                     test.place(x=40*i+40,y=40*j+40,width=40,height=40)
 
-    def eshowboardgui(self,eshowboard,window):
+    def eshowboardgui(self,eshowboard,window):                                                     #적 보드 출력하는 함수
         for i in range(10):                                                         
             for j in range(10):
                 if eshowboard[i][j]==0:
@@ -110,7 +108,7 @@ class page2:
                     test.place(x=40*(i+19),y=40*j+40,width=40,height=40)
 
 
-    def ifmyboatcrashed(self,mshowboard,window):
+    def ifmyboatcrashed(self,mshowboard,window):                                               #격추됬는지 확인하는 함수 내거
         temp = Label(window,text='2번배',width = 4, height = 2)
         temp.place(x=40,y=480)
         if self.countboat(2,mshowboard)==2:
@@ -127,7 +125,7 @@ class page2:
             shotboat4 = Label(window,text='격추됨',width = 4, height = 2)
             shotboat4.place(x=360,y=520)
 
-    def ifeboatcrashed(self,eshowboard,window):
+    def ifeboatcrashed(self,eshowboard,window):                                               #격추됬는지 확인하는 함수 적
         temp = Label(window,text='2번배',width = 4, height = 2)
         temp.place(x=800,y=480)
         if self.countboat(2,eshowboard)==2:
@@ -164,7 +162,8 @@ class page2:
         return num
     
     def mymoveinput(self,window,eshowboard,eboard):                                        #내가 쏘는 좌표 입력하는 함수
-        
+        global ex
+        global ey
         temp = Label(window, text = "행 : ",width = 4, height = 2)
         temp.place(x = 500, y = 480)
         rowinput = Entry(window, width = 4)
@@ -175,8 +174,10 @@ class page2:
         columninput = Entry(window, width = 4)
         columninput.place(x = 660, y = 480)
 
-        row=columninput.get()-1
-        column=11-rowinput.get()
+        ex=columninput.get()
+        ey=rowinput.get()
+        ex=int(float(ex))-1
+        ey=11-int(float(ey))
         
 
         firebutton = Button(window, text = "가즈아~", bg = "alice blue", command = self.moveok(row,column,eshowboard,eboard))
