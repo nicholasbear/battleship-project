@@ -180,7 +180,7 @@ class page2:
         ey=11-int(float(ey))
         
 
-        firebutton = Button(window, text = "가즈아~", bg = "alice blue", command = self.moveok(row,column,eshowboard,eboard))
+        firebutton = Button(window, text = "가즈아~", bg = "alice blue", command = self.moveok(ex,ey,eshowboard,eboard))
         firebutton.place(x = 560, y = 520)
         
     def moveok(self,row,column,eshowboard,eboard):                                         #이점에 쏠수 있는지 검사하는 함수 
