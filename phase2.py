@@ -1,6 +1,7 @@
 import ai
 import enemyboard
 import random
+import phase1
 import tkinter
 from tkinter import *
 
@@ -20,7 +21,17 @@ class page2:
         com = Label(self.window,text='Com',width = 4, height = 2, fg="black")
         com.place(x=940,y=0,width=40,height=40)
 
-        mboard=[[0 for col in range(10)] for row in range(10)]
+        mboard= [[0 for col in range(10)] for row in range(10)]
+        mboard[0][1]=2
+        mboard[0][2]=2
+        mboard[1][1]=3
+        mboard[1][2]=3
+        mboard[1][3]=3
+        mboard[2][1]=4
+        mboard[2][2]=4
+        mboard[2][3]=4
+        mboard[2][4]=4
+
         eboard= enemyboard.Enemyboard()
         eboard.clear()
         eboard.get_ship(4)
@@ -31,14 +42,10 @@ class page2:
 
         eshowboard=[[0 for col in range(10)] for row in range(10)]
 
-        
-
-        myx=0
+        myx=0       #적이둔수
         myy=0
-        ex=0
+        ex=0        #내가둔수
         ey=0
-
-        self.window.mainloop()
 
         while(mshowboard.findboat!=0):
             num=0
@@ -47,7 +54,7 @@ class page2:
             self.ifeboatcrashed(eshowboard,self.window)
             self.ifmyboatcrashed(mshowboard.mshowboard,self.window)
             self.log(self.window,myx,myy,ex,ey,num)
-            
+
             if mshowboard.findaddboat()==0:
                 root = Tk()
                 root.withdraw()
@@ -59,15 +66,18 @@ class page2:
                 msgbox.showinfo("승리했습니다")
                 break
 
-            self.mymoveinput(self.window,eshowboard,eboard.enemy_board)                           #내가 둔수
-            mshowboard.initboat()                                                                 #적이 둔수
+            self.mymoveinput(self.window,eshowboard,eboard.enemy_board)
+            self.window.mainloop()
+                                                                            
+            mshowboard.initboat()                                                                 
             mshowboard.findboat()
             mshowboard.aimove(mboard.myboard)
             myx=mshowboard.xpos
             myy=mshowboard.ypos
             
-            num+=1  
-        self.window.mainloop()                   
+            num+=1
+            
+                  
 
 
 
@@ -177,23 +187,20 @@ class page2:
         columninput = Entry(window, width = 4)
         columninput.place(x = 660, y = 480)
 
-        ex=columninput.get()
-        ey=rowinput.get()
-        ex=int(float(ex))-1
-        ey=11-int(float(ey))
-        
+        ex=self.entryvalue(columninput)-1
+        ey=11-self.entryvalue(rowinput)                
 
-        firebutton = Button(window, text = "가즈아~", bg = "alice blue", command = self.moveok(ex,ey,eshowboard,eboard))
+        firebutton = Button(window, text = "가즈아~", bg = "alice blue", command = self.moveok(ex,ey,eshowboard,eboard,window))
         firebutton.place(x = 560, y = 520)
         
-    def moveok(self,row,column,eshowboard,eboard):                                         #이점에 쏠수 있는지 검사하는 함수 
+    def moveok(self,row,column,eshowboard,eboard,window):                                         #이점에 쏠수 있는지 검사하는 함수 
         if self.movevalid(row,column,eshowboard)==True :
             if eboard[row][column]==0:
                 eshowboard[row][column]==1
             else :
                 eshowboard[row][column]==eboard[row][column]
         else:
-            self.mymoveinput()
+            self.mymoveinput(window,eshowboard,eboard)
 
 
     def movevalid(self,xpos,ypos,mshowboard):                                                  #입력하려는 점 확인하는 함수
@@ -201,5 +208,13 @@ class page2:
                 return True
             else :
                 return False
+    
+    def entryvalue(self,entry):                                                                #Entry 받는값 교정하는 함수
+        value=entry.get()
+        try:
+            return int(value)
+        except ValueError:
+            print("wrong value")
+            return 1
 
 damn=page2()
