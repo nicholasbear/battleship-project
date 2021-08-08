@@ -118,7 +118,6 @@ class page1:
                 sum += self.myboard[i][j]
         if sum == 29:
             self.window.destroy()
-            phase2.page2()
         else:
             self.label5.config(text = "배 3개를 모두 넣어주세요.", fg = "red")
 

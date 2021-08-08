@@ -3,6 +3,7 @@ import enemyboard
 import random
 import tkinter
 from tkinter import *
+
 import tkinter.messagebox as msgbox
 
 class page2:
@@ -11,7 +12,7 @@ class page2:
         self.window=tkinter.Tk()
         self.window.title("Battleship by 머저리")
         self.window.geometry("1220x640+100+100")
-        self.window.resizable(False, False)
+
         me = Label(self.window,text='Player',width = 4, height = 2, fg="black")                        #위에 타이틀
         me.place(x=220,y=0,width=40,height=40)
         log = Label(self.window,text='log',width = 4, height = 2, fg="black")                          #위에 타이틀
@@ -36,6 +37,8 @@ class page2:
         myy=0
         ex=0
         ey=0
+
+        self.window.mainloop()
 
         while(mshowboard.findboat!=0):
             num=0
