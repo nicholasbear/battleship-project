@@ -7,14 +7,9 @@ from tkinter import *
 import tkinter.messagebox as msgbox
 
 class page2:
-<<<<<<< HEAD
-    def __init__(self):
-        self.window=Tk()
-=======
 
     def __init__(self):
         self.window=tkinter.Tk()
->>>>>>> 4accfb2bdc829638014a3fcac9e3dd0cc287a3e3
         self.window.title("Battleship by 머저리")
         self.window.geometry("1220x640+100+100")
 
@@ -26,11 +21,7 @@ class page2:
         com.place(x=940,y=0,width=40,height=40)
 
         mboard=[[0 for col in range(10)] for row in range(10)]
-<<<<<<< HEAD
-        eboard=enemyboard.Enemyboard()
-=======
         eboard= enemyboard.Enemyboard()
->>>>>>> 4accfb2bdc829638014a3fcac9e3dd0cc287a3e3
         eboard.clear()
         eboard.get_ship(4)
         eboard.get_ship(3)
@@ -81,13 +72,8 @@ class page2:
 
 
 
-<<<<<<< HEAD
-    def mshowboardgui(self,mshowboard,window):   
-        for i in range(10):                                                                       # 보드 표시부분
-=======
     def mshowboardgui(self,mshowboard,window):                                                     #내보드 출력하는 함수
         for i in range(10):                                                                      
->>>>>>> 4accfb2bdc829638014a3fcac9e3dd0cc287a3e3
             for j in range(10):
                 if mshowboard.mshowboard[i][j]==0:                 
                     test = Label(window,width = 4, height = 2, relief="solid", bg = "lavender")
@@ -105,11 +91,7 @@ class page2:
                     test = Label(window,text='4',width = 4, height = 2, relief="solid", bg = "blue")
                     test.place(x=40*i+40,y=40*j+40,width=40,height=40)
 
-<<<<<<< HEAD
-    def eshowboardgui(self,eshowboard,window):
-=======
     def eshowboardgui(self,eshowboard,window):                                                     #적 보드 출력하는 함수
->>>>>>> 4accfb2bdc829638014a3fcac9e3dd0cc287a3e3
         for i in range(10):                                                         
             for j in range(10):
                 if eshowboard[i][j]==0:
@@ -129,11 +111,7 @@ class page2:
                     test.place(x=40*(i+19),y=40*j+40,width=40,height=40)
 
 
-<<<<<<< HEAD
-    def ifmyboatcrashed(self,mshowboard,window):
-=======
     def ifmyboatcrashed(self,mshowboard,window):                                               #격추됬는지 확인하는 함수 내거
->>>>>>> 4accfb2bdc829638014a3fcac9e3dd0cc287a3e3
         temp = Label(window,text='2번배',width = 4, height = 2)
         temp.place(x=40,y=480)
         if self.countboat(2,mshowboard)==2:
@@ -150,11 +128,7 @@ class page2:
             shotboat4 = Label(window,text='격추됨',width = 4, height = 2)
             shotboat4.place(x=360,y=520)
 
-<<<<<<< HEAD
-    def ifeboatcrashed(self,eshowboard,window):
-=======
     def ifeboatcrashed(self,eshowboard,window):                                               #격추됬는지 확인하는 함수 적
->>>>>>> 4accfb2bdc829638014a3fcac9e3dd0cc287a3e3
         temp = Label(window,text='2번배',width = 4, height = 2)
         temp.place(x=800,y=480)
         if self.countboat(2,eshowboard)==2:
@@ -171,14 +145,7 @@ class page2:
             shotboat4 = Label(window,text='격추됨',width = 4, height = 2)
             shotboat4.place(x=1120,y=520)
 
-<<<<<<< HEAD
-        ###################################################################
-        #로그부분
-
-    def log(self,window,myx,myy,ex,ey,num):
-=======
     def log(self,window,myx,myy,ex,ey,num):                                                 #로그창
->>>>>>> 4accfb2bdc829638014a3fcac9e3dd0cc287a3e3
         logbox=Listbox(window,width=34,height=22)
         logbox.place(x=480,y=40)
         scrollbar=Scrollbar(window,orient="vertical")
@@ -189,9 +156,6 @@ class page2:
             logbox.insert("user "+ex+","+ey+"에놓음 "+num+"회")
             logbox.insert("user "+myx+","+myy+"에놓음 "+num+"회")
 
-<<<<<<< HEAD
-page2()
-=======
     def countboat(self,boatnum,board):                                                     #몇번배가 몇개있는지 세는 함수
         num=0
         for i in range(10):
@@ -239,4 +203,3 @@ page2()
                 return False
 
 damn=page2()
->>>>>>> 4accfb2bdc829638014a3fcac9e3dd0cc287a3e3
