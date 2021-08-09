@@ -65,10 +65,9 @@ class page2:
                 root.withdraw()
                 msgbox.showinfo("승리했습니다")
                 break
-
-            self.mymoveinput(self.window,eshowboard,eboard.enemy_board)
             self.window.mainloop()
-                                                                            
+
+            self.mymoveinput(self.window,eshowboard,eboard.enemy_board)            
             mshowboard.initboat()                                                                 
             mshowboard.findboat()
             mshowboard.aimove(mboard.myboard)
