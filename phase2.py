@@ -44,17 +44,17 @@ class page2:
 
         myx=0       #적이둔수
         myy=0
-        ex=0        #내가둔수
-        ey=0
+        ex='0'        #내가둔수
+        ey='0'
 
         while(mshowboard.findboat!=0):
             num=0
-            self.mshowboardgui(mshowboard,self.window)
-            self.eshowboardgui(eshowboard,self.window)
-            self.ifeboatcrashed(eshowboard,self.window)
-            self.ifmyboatcrashed(mshowboard.mshowboard,self.window)
-            self.log(self.window,myx,myy,ex,ey,num)
-
+            self.mshowboardgui(mshowboard)                                            
+            self.eshowboardgui(eshowboard)
+            self.ifeboatcrashed(eshowboard)
+            self.ifmyboatcrashed(mshowboard.mshowboard)
+            self.log(myx,myy,ex,ey,num)
+            
             if mshowboard.findaddboat()==0:
                 root = Tk()
                 root.withdraw()
@@ -65,99 +65,108 @@ class page2:
                 root.withdraw()
                 msgbox.showinfo("승리했습니다")
                 break
-            self.window.mainloop()
 
-            self.mymoveinput(self.window,eshowboard,eboard.enemy_board)            
+            ex=self.mymoveinputrow(eshowboard,eboard)
+            ey=self.mymoveinputcolumn(eshowboard,eboard)
+            while(self.moveok(ex)==False):
+                ex=self.mymoveinputrow(eshowboard,eboard)
+            while(self.moveok(ey)==False):
+                ey=self.mymoveinputcolumn(eshowboard,eboard)
+
+                    
+            self.firebutton(ex,ey,eshowboard,eboard.enemy_board)
+            self.window.mainloop()
+     
             mshowboard.initboat()                                                                 
             mshowboard.findboat()
-            mshowboard.aimove(mboard.myboard)
+            mshowboard.aimove(mboard)
             myx=mshowboard.xpos
             myy=mshowboard.ypos
             
             num+=1
+        
             
                   
 
 
 
 
-    def mshowboardgui(self,mshowboard,window):                                                     #내보드 출력하는 함수
+    def mshowboardgui(self,mshowboard):                                                     #내보드 출력하는 함수
         for i in range(10):                                                                      
             for j in range(10):
                 if mshowboard.mshowboard[i][j]==0:                 
-                    test = Label(window,width = 4, height = 2, relief="solid", bg = "lavender")
+                    test = Label(self.window,width = 4, height = 2, relief="solid", bg = "lavender")
                     test.place(x=40*i+40,y=40*j+40,width=40,height=40)
                 elif mshowboard.mshowboard[i][j]==1:
-                    test = Label(window,width = 4, height = 2, relief="solid", bg = "black")
+                    test = Label(self.window,width = 4, height = 2, relief="solid", bg = "black")
                     test.place(x=40*i+40,y=40*j+40,width=40,height=40)
                 elif mshowboard.mshowboard[i][j]==2:
-                    test = Label(window,text='2',width = 4, height = 2, relief="solid", bg = "yellow")
+                    test = Label(self.window,text='2',width = 4, height = 2, relief="solid", bg = "yellow")
                     test.place(x=40*i+40,y=40*j+40,width=40,height=40)
                 elif mshowboard.mshowboard[i][j]==3:
-                    test = Label(window,text='3',width = 4, height = 2, relief="solid", bg = "red")
+                    test = Label(self.window,text='3',width = 4, height = 2, relief="solid", bg = "red")
                     test.place(x=40*i+40,y=40*j+40,width=40,height=40)
                 elif mshowboard.mshowboard[i][j]==4:
-                    test = Label(window,text='4',width = 4, height = 2, relief="solid", bg = "blue")
+                    test = Label(self.window,text='4',width = 4, height = 2, relief="solid", bg = "blue")
                     test.place(x=40*i+40,y=40*j+40,width=40,height=40)
 
-    def eshowboardgui(self,eshowboard,window):                                                     #적 보드 출력하는 함수
+    def eshowboardgui(self,eshowboard):                                                     #적 보드 출력하는 함수
         for i in range(10):                                                         
             for j in range(10):
                 if eshowboard[i][j]==0:
-                    test = Label(window,width = 4, height = 2, relief="solid", bg = "lavender")
+                    test = Label(self.window,width = 4, height = 2, relief="solid", bg = "lavender")
                     test.place(x=40*(i+19),y=40*j+40,width=40,height=40)
                 elif eshowboard[i][j]==1:
-                    test = Label(window,width = 4, height = 2, relief="solid", bg = "black")
+                    test = Label(self.window,width = 4, height = 2, relief="solid", bg = "black")
                     test.place(x=40*(i+19),y=40*j+40,width=40,height=40)
                 elif eshowboard[i][j]==2:
-                    test = Label(window,text='2',width = 4, height = 2, relief="solid", bg = "yellow")
+                    test = Label(self.window,text='2',width = 4, height = 2, relief="solid", bg = "yellow")
                     test.place(x=40*(i+19),y=40*j+40,width=40,height=40)
                 elif eshowboard[i][j]==3:
-                    test = Label(window,text='3',width = 4, height = 2, relief="solid", bg = "red")
+                    test = Label(self.window,text='3',width = 4, height = 2, relief="solid", bg = "red")
                     test.place(x=40*(i+19),y=40*j+40,width=40,height=40)
                 elif eshowboard[i][j]==4:
-                    test = Label(window,text='4',width = 4, height = 2, relief="solid", bg = "blue")
+                    test = Label(self.window,text='4',width = 4, height = 2, relief="solid", bg = "blue")
                     test.place(x=40*(i+19),y=40*j+40,width=40,height=40)
 
-
-    def ifmyboatcrashed(self,mshowboard,window):                                               #격추됬는지 확인하는 함수 내거
-        temp = Label(window,text='2번배',width = 4, height = 2)
+    def ifmyboatcrashed(self,mshowboard):                                                   #격추됬는지 확인하는 함수 내거
+        temp = Label(self.window,text='2번배',width = 4, height = 2)
         temp.place(x=40,y=480)
         if self.countboat(2,mshowboard)==2:
-            shotboat2 = Label(window,text='격추됨',width = 4, height = 2)
+            shotboat2 = Label(self.window,text='격추됨',width = 4, height = 2)
             shotboat2.place(x=40,y=520)
-        temp = Label(window,text='3번배',width = 4, height = 2)
+        temp = Label(self.window,text='3번배',width = 4, height = 2)
         temp.place(x=200,y=480)
         if self.countboat(3,mshowboard)==3:
-            shotboat3 = Label(window,text='격추됨',width = 4, height = 2)
+            shotboat3 = Label(self.window,text='격추됨',width = 4, height = 2)
             shotboat3.place(x=200,y=520)
-        temp = Label(window,text='4번배',width = 4, height = 2)
+        temp = Label(self.window,text='4번배',width = 4, height = 2)
         temp.place(x=360,y=480)
         if self.countboat(4,mshowboard)==4:
-            shotboat4 = Label(window,text='격추됨',width = 4, height = 2)
+            shotboat4 = Label(self.window,text='격추됨',width = 4, height = 2)
             shotboat4.place(x=360,y=520)
 
-    def ifeboatcrashed(self,eshowboard,window):                                               #격추됬는지 확인하는 함수 적
-        temp = Label(window,text='2번배',width = 4, height = 2)
+    def ifeboatcrashed(self,eshowboard):                                                    #격추됬는지 확인하는 함수 적
+        temp = Label(self.window,text='2번배',width = 4, height = 2)
         temp.place(x=800,y=480)
         if self.countboat(2,eshowboard)==2:
-            shotboat2 = Label(window,text='격추됨',width = 4, height = 2)
+            shotboat2 = Label(self.window,text='격추됨',width = 4, height = 2)
             shotboat2.place(x=800,y=520)
-        temp = Label(window,text='3번배',width = 4, height = 2)
+        temp = Label(self.window,text='3번배',width = 4, height = 2)
         temp.place(x=960,y=480)
         if self.countboat(3,eshowboard)==3:
-            shotboat3 = Label(window,text='격추됨',width = 4, height = 2)
+            shotboat3 = Label(self.window,text='격추됨',width = 4, height = 2)
             shotboat3.place(x=960,y=520)
-        temp = Label(window,text='4번배',width = 4, height = 2)
+        temp = Label(self.window,text='4번배',width = 4, height = 2)
         temp.place(x=1120,y=480)
         if self.countboat(4,eshowboard)==4:
-            shotboat4 = Label(window,text='격추됨',width = 4, height = 2)
+            shotboat4 = Label(self.window,text='격추됨',width = 4, height = 2)
             shotboat4.place(x=1120,y=520)
 
-    def log(self,window,myx,myy,ex,ey,num):                                                 #로그창
-        logbox=Listbox(window,width=34,height=22)
+    def log(self,myx,myy,ex,ey,num):                                                        #로그창
+        logbox=Listbox(self.window,width=34,height=22)
         logbox.place(x=480,y=40)
-        scrollbar=Scrollbar(window,orient="vertical")
+        scrollbar=Scrollbar(self.window,orient="vertical")
         scrollbar.config(command=logbox.yview)
         scrollbar.pack(side="right",fill="y")
         logbox.config(yscrollcommand=scrollbar.set)
@@ -165,7 +174,7 @@ class page2:
             logbox.insert("user "+ex+","+ey+"에놓음 "+num+"회")
             logbox.insert("user "+myx+","+myy+"에놓음 "+num+"회")
 
-    def countboat(self,boatnum,board):                                                     #몇번배가 몇개있는지 세는 함수
+    def countboat(self,boatnum,board):                                                      #몇번배가 몇개있는지 세는 함수
         num=0
         for i in range(10):
             for j in range(10):
@@ -173,47 +182,50 @@ class page2:
                     num+=1
         return num
     
-    def mymoveinput(self,window,eshowboard,eboard):                                        #내가 쏘는 좌표 입력하는 함수
-        global ex
-        global ey
-        temp = Label(window, text = "행 : ",width = 4, height = 2)
+    def mymoveinputrow(self,eshowboard,eboard):                                             #내가 쏘는 좌표 입력하는 함수 row
+        temp = Label(self.window, text = "행 : ",width = 4, height = 2)
         temp.place(x = 500, y = 480)
-        rowinput = Entry(window, width = 4)
+        rowinput = Entry(self.window, width = 4)
         rowinput.place(x = 540, y = 480)
+        return rowinput
 
-        temp = Label(window, text = "열 : ",width = 4, height = 2)
+    def mymoveinputcolumn(self,eshowboard,eboard):                                          #내가 쏘는 좌표 입력하는 함수 col
+        temp = Label(self.window, text = "열 : ",width = 4, height = 2)
         temp.place(x = 620, y = 480)
-        columninput = Entry(window, width = 4)
+        columninput = Entry(self.window, width = 4)
         columninput.place(x = 660, y = 480)
-
-        ex=self.entryvalue(columninput)-1
-        ey=11-self.entryvalue(rowinput)                
-
-        firebutton = Button(window, text = "가즈아~", bg = "alice blue", command = self.moveok(ex,ey,eshowboard,eboard,window))
+        return columninput
+    
+    def firebutton(self,ex,ey,eshowboard,eboard):                                           #발사 버튼
+        ex=ey-1
+        ey=11-ex                
+        firebutton = Button(self.window, text = "가즈아~", bg = "alice blue", command = self.firemymove(ex,ey,eshowboard,eboard))
         firebutton.place(x = 560, y = 520)
-        
-    def moveok(self,row,column,eshowboard,eboard,window):                                         #이점에 쏠수 있는지 검사하는 함수 
-        if self.movevalid(row,column,eshowboard)==True :
-            if eboard[row][column]==0:
-                eshowboard[row][column]==1
-            else :
-                eshowboard[row][column]==eboard[row][column]
+    
+    def firemymove(self,ex,ey,eshowboard,eboard):                                           #발사 command
+        if eboard[ex][ey]==0:
+            eshowboard[ex][ey]==1
         else:
-            self.mymoveinput(window,eshowboard,eboard)
+            eshowboard[ex][ey]=eboard[ex][ey]
+        
+    def moveok(self,ex):                                               #이점에 쏠수 있는지 검사하는 함수 
+        if self.entryvalue(ex)>=1 and self.entryvalue<=10:
+            return True
+        else :
+            return False
 
-
-    def movevalid(self,xpos,ypos,mshowboard):                                                  #입력하려는 점 확인하는 함수
+    def movevalid(self,xpos,ypos,mshowboard):                                               #입력하려는 점 보드 안에 있는지 확인하는 함수
             if xpos>=0 and xpos <=9 and ypos>=0 and ypos<=9 and mshowboard[xpos][ypos]==0:
                 return True
             else :
                 return False
     
-    def entryvalue(self,entry):                                                                #Entry 받는값 교정하는 함수
+    def entryvalue(self,entry):                                                             #Entry 받는값 교정하는 함수
         value=entry.get()
         try:
             return int(value)
         except ValueError:
             print("wrong value")
-            return 1
+            return 0
 
 damn=page2()
