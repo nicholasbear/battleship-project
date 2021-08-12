@@ -76,10 +76,10 @@ class page2:
             columninput.place(x = 660, y = 480)
             firebutton = Button(self.window, text = "가즈아~", bg = "alice blue", command = lambda: self.firecommand(rowinput,columninput,eshowboard,eboard.enemy_board))
             firebutton.place(x = 560, y = 520)           
-            self.window.mainloop()
+            
 
             mshowboard.initboat()                                                                 
-            mshowboard.findboat(mshowboard.mshowboard)
+            mshowboard.findboat()
             mshowboard.aimove(mboard)
             myx=mshowboard.xpos
             myy=mshowboard.ypos
