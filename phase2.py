@@ -8,18 +8,8 @@ from tkinter import *
 import tkinter.messagebox as msgbox
 
 class page2:
-
+    
     def __init__(self):
-        self.window=tkinter.Tk()
-        self.window.title("Battleship by 머저리")
-        self.window.geometry("1220x640+100+100")
-
-        me = Label(self.window,text='Player',width = 4, height = 2, fg="black")                        #위에 타이틀
-        me.place(x=220,y=0,width=40,height=40)
-        log = Label(self.window,text='log',width = 4, height = 2, fg="black")                          #위에 타이틀
-        log.place(x=580,y=0,width=40,height=40)
-        com = Label(self.window,text='Com',width = 4, height = 2, fg="black")
-        com.place(x=940,y=0,width=40,height=40)
 
         mboard= [[0 for col in range(10)] for row in range(10)]
         mboard[0][1]=2
@@ -48,6 +38,20 @@ class page2:
         ey='0'
 
         while(mshowboard.findboat!=0):
+            self.window=tkinter.Tk()
+            self.window.title("Battleship by 머저리")
+            self.window.geometry("1220x640+100+100")
+
+            me = Label(self.window,text='Player',width = 4, height = 2, fg="black")                        #위에 타이틀
+            me.place(x=220,y=0,width=40,height=40)
+            log = Label(self.window,text='log',width = 4, height = 2, fg="black")                          #위에 타이틀
+            log.place(x=580,y=0,width=40,height=40)
+            com = Label(self.window,text='Com',width = 4, height = 2, fg="black")
+            com.place(x=940,y=0,width=40,height=40)
+            temp1 = Label(self.window, text = "행 : ",width = 4, height = 2)
+            temp1.place(x = 500, y = 480)
+            temp2 = Label(self.window, text = "열 : ",width = 4, height = 2)
+            temp2.place(x = 620, y = 480)
             num=0
             self.mshowboardgui(mshowboard)                                            
             self.eshowboardgui(eshowboard)
@@ -66,31 +70,24 @@ class page2:
                 msgbox.showinfo("승리했습니다")
                 break
 
-            ex=self.mymoveinputrow(eshowboard,eboard)
-            ey=self.mymoveinputcolumn(eshowboard,eboard)
-            while(self.moveok(ex)==False):
-                ex=self.mymoveinputrow(eshowboard,eboard)
-            while(self.moveok(ey)==False):
-                ey=self.mymoveinputcolumn(eshowboard,eboard)
-
-                    
-            self.firebutton(ex,ey,eshowboard,eboard.enemy_board)
+            rowinput = Entry(self.window, width = 4)
+            rowinput.place(x = 540, y = 480)
+            columninput = Entry(self.window, width = 4)
+            columninput.place(x = 660, y = 480)
+            firebutton = Button(self.window, text = "가즈아~", bg = "alice blue", command = lambda: self.firecommand(rowinput,columninput,eshowboard,eboard.enemy_board))
+            firebutton.place(x = 560, y = 520)           
             self.window.mainloop()
-     
+
             mshowboard.initboat()                                                                 
-            mshowboard.findboat()
+            mshowboard.findboat(mshowboard.mshowboard)
             mshowboard.aimove(mboard)
             myx=mshowboard.xpos
             myy=mshowboard.ypos
             
             num+=1
-        
-            
-                  
-
-
-
-
+        self.window.mainloop()
+        print("done")
+   
     def mshowboardgui(self,mshowboard):                                                     #내보드 출력하는 함수
         for i in range(10):                                                                      
             for j in range(10):
@@ -181,45 +178,33 @@ class page2:
                 if board[i][j]==boatnum:
                     num+=1
         return num
-    
-    def mymoveinputrow(self,eshowboard,eboard):                                             #내가 쏘는 좌표 입력하는 함수 row
-        temp = Label(self.window, text = "행 : ",width = 4, height = 2)
-        temp.place(x = 500, y = 480)
-        rowinput = Entry(self.window, width = 4)
-        rowinput.place(x = 540, y = 480)
-        return rowinput
-
-    def mymoveinputcolumn(self,eshowboard,eboard):                                          #내가 쏘는 좌표 입력하는 함수 col
-        temp = Label(self.window, text = "열 : ",width = 4, height = 2)
-        temp.place(x = 620, y = 480)
-        columninput = Entry(self.window, width = 4)
-        columninput.place(x = 660, y = 480)
-        return columninput
-    
-    def firebutton(self,ex,ey,eshowboard,eboard):                                           #발사 버튼
-        ex=ey-1
-        ey=11-ex                
-        firebutton = Button(self.window, text = "가즈아~", bg = "alice blue", command = self.firemymove(ex,ey,eshowboard,eboard))
-        firebutton.place(x = 560, y = 520)
-    
-    def firemymove(self,ex,ey,eshowboard,eboard):                                           #발사 command
+      
+    def firecommand(self,rowinput,columninput,eshowboard,eboard):                                             #버튼 커맨드
+      global ex
+      global ey 
+      ex=self.entryvalue(columninput)-1
+      ey=10-self.entryvalue(rowinput)
+      
+      if ex>=0 and ex<=9 and ey>=0 and ey<=9:
+        if eshowboard[ex][ey]!=0:
+            print("Problem")
+            root = Tk()
+            root.withdraw()
+            msgbox.showinfo("중복 입력했습니다 다시 입력하세요")
+            self.firecommand(self,rowinput,columninput,eshowboard,eboard)
+        print("good")
         if eboard[ex][ey]==0:
-            eshowboard[ex][ey]==1
+            eshowboard[ex][ey]=1
         else:
             eshowboard[ex][ey]=eboard[ex][ey]
-        
-    def moveok(self,ex):                                               #이점에 쏠수 있는지 검사하는 함수 
-        if self.entryvalue(ex)>=1 and self.entryvalue<=10:
-            return True
-        else :
-            return False
-
-    def movevalid(self,xpos,ypos,mshowboard):                                               #입력하려는 점 보드 안에 있는지 확인하는 함수
-            if xpos>=0 and xpos <=9 and ypos>=0 and ypos<=9 and mshowboard[xpos][ypos]==0:
-                return True
-            else :
-                return False
-    
+         
+      else:
+        print("Problem")
+        root = Tk()
+        root.withdraw()
+        msgbox.showinfo("잘못 입력했습니다 다시 입력하세요")
+        self.firecommand(self,rowinput,columninput,eshowboard,eboard)
+             
     def entryvalue(self,entry):                                                             #Entry 받는값 교정하는 함수
         value=entry.get()
         try:

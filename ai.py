@@ -15,14 +15,14 @@ class aimove:
         self.boat3=0
         self.boat4=0
 
-    def findboat(self):                                                       #일단 발견 보트 개수 파악      
-        for i in self.mshowboard:
+    def findboat(self,mshowboard):                                                       #일단 발견 보트 개수 파악      
+        for i in range(10):
             for j in range(10):
-                if self.mshowboardmshowboard[i][j]==2:
+                if mshowboard[i][j]==2:
                     self.boat2+=1
-                elif self.mshowboard[i][j]==3:
+                elif mshowboard[i][j]==3:
                     self.boat3+=1
-                elif self.mshowboard[i][j]==4:
+                elif mshowboard[i][j]==4:
                     self.boat4+=1
 
     def findaddboat(self):                                                    #어떤 보트 추가하는건지 확인           
